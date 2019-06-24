@@ -41,7 +41,6 @@ accurarcy: 99.28%
 import numpy
 from keras.models import Sequential, load_model
 from keras.layers import Dense
-from keras.wrappers.scikit_learn import KerasClassifier
 from keras.utils import np_utils, plot_model
 from keras.callbacks import TensorBoard
 
@@ -163,8 +162,8 @@ def create_model():
 if __name__ == "__main__":
 
 
-	# This is a very large amount of epochs for this data set
-	EPOCHS = 10#1400
+	# This is a very large amount of epochs for this data set but it makes nice tensorboard graphs
+	EPOCHS = 1400
 	BATCH_SIZE = 12
 
 	# get data
@@ -198,7 +197,7 @@ if __name__ == "__main__":
 
 	# Fit the model
 	model.fit(poker_hand_input, poker_hand_output, epochs=EPOCHS, batch_size=BATCH_SIZE, callbacks=callbacks)
-	model.save('poker_model_2.h5')
+	model.save('poker_model.h5')
 
 	# load and evaluate with testing data.
 	poker_testing_data = numpy.loadtxt('poker_hand_testing.txt', delimiter=",")
